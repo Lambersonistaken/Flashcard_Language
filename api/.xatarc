@@ -1,0 +1,6 @@
+{
+  "databaseURL": "https://smail-Emir-Lambac-o-lu-s-workspace-9btn6s.us-east-1.xata.sh/db/flashcard",
+  "codegen": {
+    "output": "src/xata.ts"
+  }
+}
