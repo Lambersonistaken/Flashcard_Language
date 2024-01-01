@@ -16,6 +16,16 @@ const tables = [
       { name: "creator", type: "string" },
       { name: "image", type: "file", file: { defaultPublicAccess: true } },
     ],
+    revLinks: [{ column: "set", table: "cards" }],
+  },
+  {
+    name: "cards",
+    columns: [
+      { name: "question", type: "string" },
+      { name: "answer", type: "string" },
+      { name: "image", type: "file", file: { defaultPublicAccess: true } },
+      { name: "set", type: "link", link: { table: "sets" } },
+    ],
   },
 ] as const;
 
@@ -25,8 +35,12 @@ export type InferredTypes = SchemaInference<SchemaTables>;
 export type Sets = InferredTypes["sets"];
 export type SetsRecord = Sets & XataRecord;
 
+export type Cards = InferredTypes["cards"];
+export type CardsRecord = Cards & XataRecord;
+
 export type DatabaseSchema = {
   sets: SetsRecord;
+  cards: CardsRecord;
 };
 
 const DatabaseClient = buildClient();

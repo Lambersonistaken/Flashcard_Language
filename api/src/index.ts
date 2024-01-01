@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import { getXataClient } from "./xata";
+import { sets, cardsCapitals, cardsProgramming } from "./seed_database";
 dotenv.config();
 const { PORT } = process.env || 3000;
 
@@ -10,9 +11,14 @@ app.use(express.json({ limit: "50mb" }));
 
 const client = getXataClient();
 
-app.get("/", async (req, res) => {
-  const result = await client.db.sets.getAll();
-  return res.json({results: result});
+app.get("/init", async (req, res) => {
+  const seedSets = sets;
+  const seedCardsCapitals = cardsCapitals;
+  const seedCardsProgramming = cardsProgramming;
+
+  await client.db.sets.create(seedSets);
+
+  return res.json({ok: true});
 });
 
 app.listen(PORT, () => {
