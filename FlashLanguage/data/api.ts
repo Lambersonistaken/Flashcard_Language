@@ -41,12 +41,21 @@ export const createSet = async (set: Partial<Set>) => {
 export const getSets = async (): Promise<Set[]> => {
   try {
     const response = await fetch(`${API_URL}/sets`);
+    
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
+
     return response.json();
   } catch (error) {
-    console.error("Error fetching sets:", error);
+    console.error("Error fetching sets:", error, API_URL);
+
+    if (error instanceof TypeError) {
+      console.error("A network error occurred. Check your internet connection.");
+    } else if (error instanceof SyntaxError) {
+      console.error("Error parsing JSON response. Make sure the server returns valid JSON.");
+    }
+
     throw error; // Re-throw the error to handle it in the calling code if needed
   }
 };
