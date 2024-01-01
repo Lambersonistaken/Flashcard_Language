@@ -6,7 +6,7 @@ import { USER_STORAGE_KEY } from '@/data/api';
 
 const Page = () => {
   const [hasID, setHasID] = useState(false);
-
+// changes
   useEffect(() => {
     const loadId = async () => {
       const id = await AsyncStorage.getItem(USER_STORAGE_KEY);
