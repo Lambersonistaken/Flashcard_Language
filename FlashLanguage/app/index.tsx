@@ -10,7 +10,6 @@ const Page = () => {
   useEffect(() => {
     const loadId = async () => {
       const id = await AsyncStorage.getItem(USER_STORAGE_KEY);
-      console.log("my id :", id)
       if (!id) {
         const randomUserid = Math.random().toString(36);
         await AsyncStorage.setItem(USER_STORAGE_KEY, randomUserid);

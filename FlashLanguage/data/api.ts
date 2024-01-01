@@ -39,8 +39,16 @@ export const createSet = async (set: Partial<Set>) => {
 };
 
 export const getSets = async (): Promise<Set[]> => {
-  const response = await fetch(`${API_URL}/sets`);
-  return response.json();
+  try {
+    const response = await fetch(`${API_URL}/sets`);
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    return response.json();
+  } catch (error) {
+    console.error("Error fetching sets:", error);
+    throw error; // Re-throw the error to handle it in the calling code if needed
+  }
 };
 
 export const deleteSet = async (setid: string) => {
