@@ -1,5 +1,5 @@
 
-import { View, Text, StyleSheet, ListRenderItem, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, ListRenderItem, TouchableOpacity, Image } from 'react-native'
 import React, {useEffect, useState } from 'react'
 import { Set, getSets } from '@/data/api'
 import { FlatList, RefreshControl } from 'react-native-gesture-handler';
@@ -32,6 +32,15 @@ const Page = () => {
         <Link href={`/(modals)/set/${item.id}`} asChild>
         <TouchableOpacity style={styles.setRow}>
           <View style={{flexDirection: 'row', gap: 10 }}>
+            {item.image && (
+              <Image 
+              source={{ uri: item.image.url }}
+              style={{width: 50, height: 50, borderRadius: 8 }}
+              />
+            )}
+            {!item.image && 
+              <View style={{width: 50, height: 50 }} />
+            }
           <View style={{flex:1}}>
             <Text style={styles.rowTitle}>{item.title}</Text>
             <Text style={{ color: Colors.darkGrey}}>{item.cards} Cards</Text>
