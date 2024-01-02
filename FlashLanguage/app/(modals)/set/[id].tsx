@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, Image } from 'react-native'
 import React, { useEffect, useState} from 'react'
 import { useLocalSearchParams, useRouter } from 'expo-router'
 import {Set, getSet} from '@/data/api';
@@ -25,6 +25,12 @@ const Page = () => {
     {set && <View style={{ alignItems: 'flex-start', padding: 16, gap:10, flex:1 }}>
     <Text style={styles.header}>{set.title}</Text>
     <Text  style={{color: '#666'}}>{set.cards} Cards</Text>
+    {set.image && (
+        <Image 
+        source={{ uri: set.image.url }}
+        style={{width: '100%', height: 200 }}
+        />
+    )}
     </View>}
         
     </View>
