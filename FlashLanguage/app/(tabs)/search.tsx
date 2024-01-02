@@ -7,6 +7,8 @@ import { defaultStyleSheet } from '@/constants/Styles';
 import { Link } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import Colors from '@/constants/Colors';
+import { transformImage } from '@xata.io/client';
+
 
 const Page = () => {
   const [sets, setSets] = useState<Set[]>([]);
@@ -34,7 +36,7 @@ const Page = () => {
           <View style={{flexDirection: 'row', gap: 10 }}>
             {item.image && (
               <Image 
-              source={{ uri: item.image.url }}
+              source={{ uri: transformImage(item.image.url, { width:100, height: 100}) }}
               style={{width: 50, height: 50, borderRadius: 8 }}
               />
             )}
