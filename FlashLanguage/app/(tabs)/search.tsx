@@ -1,9 +1,11 @@
 
-import { View, Text, StyleSheet, ListRenderItem } from 'react-native'
-import React, {useEffect, useState} from 'react'
+import { View, Text, StyleSheet, ListRenderItem, TouchableOpacity } from 'react-native'
+import React, {useEffect, useState } from 'react'
 import { Set, getSets } from '@/data/api'
 import { FlatList } from 'react-native-gesture-handler';
 import { defaultStyleSheet } from '@/constants/Styles';
+import { Link } from 'expo-router';
+import { Ionicons } from '@expo/vector-icons';
 
 const Page = () => {
   const [sets, setSets] = useState<Set[]>([]);
@@ -25,9 +27,19 @@ const Page = () => {
 
   const renderSetRow: ListRenderItem<Set> = ({ item }) => {
     return(
-      <View>
-        <Text>Test</Text>
-      </View>
+      
+        <Link href={`/(modals)/set/${item.id}`} asChild>
+        <TouchableOpacity style={styles.setRow}>
+          <View style={{flexDirection: 'row'}}>
+          <View style={{flex:1}}>
+            <Text>{item.title}</Text>
+            <Text>{item.cards} Cards</Text>
+          </View>
+          <Ionicons name="chevron-forward-outline" size={24} color={'#ccc'} />
+          </View>
+          </TouchableOpacity>
+        </Link>
+      
     )
   }
   return (
@@ -38,7 +50,8 @@ const Page = () => {
 }
 
 const styles = StyleSheet.create({
-
+setRow: {
+}
 })
 
 export default Page
