@@ -1,8 +1,9 @@
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import React, { useEffect, useState} from 'react'
 import { useLocalSearchParams, useRouter } from 'expo-router'
-import {Set, getSet} from '@/data/api';
+import {Set, addToFavorites, getSet} from '@/data/api';
 import { defaultStyleSheet } from '@/constants/Styles';
+import { addTableColumn } from '@xata.io/client';
 
 const Page = () => {
     const { id } = useLocalSearchParams<{id: string}>();
@@ -21,8 +22,9 @@ const Page = () => {
     },[id]);
 
     const onAddToFavorites = async() => {
-
-    }
+        await addToFavorites(id);
+        router.push('/(tabs)/sets');
+       }
 
   return (
     <View style={defaultStyleSheet.container}>
@@ -40,9 +42,9 @@ const Page = () => {
     <Text style={{color: '#666'}}>Created by: {set.creator}</Text>
     </View>
     )}
-    <View style={{}}>
+    <View style={{ alignItems: 'center'}}>
         <TouchableOpacity style={defaultStyleSheet.bottomButton} onPress={onAddToFavorites}>
-        <Text>Add to Favorites</Text>
+        <Text style={defaultStyleSheet.buttonText}>Add to Favorites</Text>
         </TouchableOpacity>
     </View>
     </View>
