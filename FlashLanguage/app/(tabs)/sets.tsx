@@ -38,13 +38,32 @@ const Page = () => {
       <View>
         <Text style={styles.rowTitle}>{set.title}</Text>
 
-        {canEdit &&(
-          <Link href={`/(modals)/(cards)/${set.id}`} asChild>
+        <View style={{flexDirection: 'row', gap: 4, marginTop: 10}}>
+        <Link href={`/(learn)/${set.id}?limit=3`} asChild>
+            <TouchableOpacity style={defaultStyleSheet.button}>
+              <Text style={defaultStyleSheet.buttonText}>3 cards</Text>
+            </TouchableOpacity>
+          </Link>
+          <Link href={`/(learn)/${set.id}?limit=6`} asChild>
+            <TouchableOpacity style={defaultStyleSheet.button}>
+              <Text style={defaultStyleSheet.buttonText}>6 cards</Text>
+            </TouchableOpacity>
+          </Link>
+          <Link href={`/(learn)/${set.id}?limit=10`} asChild>
+            <TouchableOpacity style={defaultStyleSheet.button}>
+              <Text style={defaultStyleSheet.buttonText}>10 cards</Text>
+            </TouchableOpacity>
+          </Link>
+          {canEdit &&(
+          <Link href={`./(modals)/(cards)/${set.id}`} asChild>
             <TouchableOpacity style={defaultStyleSheet.button}>
               <Text style={defaultStyleSheet.buttonText}>Edit</Text>
             </TouchableOpacity>
           </Link>
         ) }
+        </View>
+
+        
       </View>
     </View>
   );

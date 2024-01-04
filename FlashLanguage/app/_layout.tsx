@@ -18,6 +18,7 @@ const Layout = () => {
         headerTintColor:"#fff",
     }}>
         <Stack.Screen name="(tabs)" options={{headerShown:false}} />
+        <Stack.Screen name="(learn)/[id]" options={{ title: 'Learn' }} />
 
         
         <Stack.Screen name="(modals)/set/[id]" options={{
